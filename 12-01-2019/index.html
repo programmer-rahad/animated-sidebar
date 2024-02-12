@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Animated Sidebar using html css and javascript ( 12 January 2019 )</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      body {
+        font-size: 14px;
+        font-family: arial;
+        letter-spacing: 1px;
+      }
+      #navigation {
+        position: fixed;
+        width: 300px;
+        background: #222;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        color: #fff;
+        transform: translateX(-100%);
+        transition: 0.5s;
+      }
+      @media (max-width: 575.98px) {
+        #navigation {
+          width: 270px;
+        }
+      }
+      @media (max-width: 479.98px) {
+        #navigation {
+          width: 250px;
+        }
+      }
+      div#open-nav {
+        position: fixed;
+        left: calc(100% + 29px);
+        background: #222;
+        padding: 8px 16px;
+        border-radius: 4px;
+        top: 25px;
+        font-family: cursive;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        z-index: 1;
+      }
+      div#close-nav {
+        background: #3498db;
+        text-align: center;
+        padding: 13px 0;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 2px;
+      }
+      .fa-close {
+        margin-left: 2px;
+        margin-right: 2px;
+        transform: translateY(1px);
+        font-size: 19px;
+      }
+      div#close-nav span {
+        font-weight: 700;
+      }
+      div#close-nav > span:first-child {
+        transform: translateY(1.45px);
+        display: inline-block;
+      }
+
+      #navigation ul {
+        height: calc(100% - 45px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      #navigation ul li:first-child {
+        border-top: 1px solid #ffffff80;
+      }
+      #navigation ul li {
+        border-bottom: 1px solid #ffffff80;
+        transition-duration: 0.35s;
+      }
+      #navigation ul li a {
+        text-decoration: none;
+        color: #fff;
+        padding: 12px 20px;
+        display: block;
+        font-size: 17px;
+        font-family: cursive;
+        letter-spacing: 2px;
+        transition-duration: 0.35s;
+      }
+      #navigation ul li:hover a {
+        background: #ffcd00;
+        background: #ffffff;
+        color: #222222;
+        padding-left: 26px;
+      }
+
+      .d-inline-flex {
+        display: inline-flex;
+      }
+      .align-items-center {
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navigation">
+      <div id="open-nav">Menu</div>
+      <div id="close-nav">
+        <span>Close</span>
+        <span class="d-inline-flex align-items-center">
+          <span>[</span><i class="fas fa-close"></i> <span>]</span></span
+        >
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Portfolios</a></li>
+        <li><a href="#">Service</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <script>
+		
+      // Variables
+      var li = document.getElementsByTagName("li");
+      var closeNav = document.getElementById("close-nav");
+      var openNav = document.getElementById("open-nav");
+      var navigation = document.getElementById("navigation");
+
+      // Mouse Enter on li
+      Array.from(li).forEach(function (item) {
+        item.addEventListener("mouseenter", function () {
+          var prevItem = this.previousElementSibling;
+          var nextItem = this.nextElementSibling;
+          if (prevItem != null && li[0] !== prevItem) {
+            prevItem.style.borderColor = "transparent";
+          }
+          this.style.borderColor = "transparent";
+        });
+      });
+
+      // Mouse Leave from li
+      Array.from(li).forEach(function (item) {
+        item.addEventListener("mouseleave", function () {
+          var prevItem = this.previousElementSibling;
+
+          if (prevItem != null) {
+            prevItem.style.borderColor = "#ffffff80";
+          }
+          this.style.borderColor = "#ffffff80";
+        });
+      });
+
+      // Close Navigation
+      closeNav.addEventListener("click", function () {
+        navigation.style.transform = "translateX(-100%)";
+        setTimeout(function () {
+          openNav.style.opacity = 1;
+          openNav.style.transitionDuration = ".45s";
+          setTimeout(function () {
+            openNav.style.transitionDuration = "0s";
+          });
+        }, 500);
+      });
+
+      // Open Navigation
+      openNav.addEventListener("click", function () {
+        openNav.style.opacity = 0;
+        navigation.style.transform = "translateX(0)";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Animated Sidebar using html, css and javascript (Friday 03 September 2021)
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <style>
+      html {
+        font-size: 16px;
+      }
+      * {
+        margin: 0px;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        display: inline-block;
+      }
+      img {
+        vertical-align: middle;
+        max-width: 100%;
+      }
+      body {
+        background-color: #f1f5f8;
+      }
+      aside {
+        background-color: #fff;
+        width: 400px;
+        position: fixed;
+        height: 100vh;
+        transform: translateX(-100%);
+        /* top: 0; */
+        transition-duration: 0.5s;
+      }
+      @media (max-width: 575.98px) {
+        aside {
+          width: 345px;
+        }
+      }
+      @media (max-width: 479.98px) {
+        aside {
+          width: 100%;
+        }
+      }
+      aside.open {
+        transform: translateX(0);
+      }
+      .sidenav-header {
+        padding: 2.5rem 1.5rem;
+        overflow: hidden;
+        margin-bottom: 10px;
+      } 
+      .sidenav-header > :first-child {
+        float: right;
+      }
+
+      .sidenav-header > :last-child {
+        float: left;
+      }
+
+      .logo {
+        max-width: 185px;
+      }
+      i.fas.fa-bars {
+        color: #49a6e9;
+        font-size: 2rem;
+        cursor: pointer;
+        position: fixed;
+        right: 3.5rem;
+        top: 2.5rem;
+        animation-name: scaling;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      @media (max-width: 767.98px) {
+        i.fas.fa-bars {
+          right: 2.5rem;
+          top: 2rem;
+        }
+      }
+      @keyframes scaling {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+      }
+      i.fas.fa-times {
+        margin-top: 3px;
+        cursor: pointer;
+        color: #bb2525;
+        font-size: 28px;
+      }
+
+      ul {
+        overflow: auto;
+        height: 100vh;
+        max-height: calc(100vh - (121px + 87px));
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 15px;
+        /* justify-content: center; */
+      }
+      ul li a {
+        color: #7ab6ee;
+        display: block;
+        font-size: 1.2rem;
+        padding: 0.7rem 1.5rem;
+        letter-spacing: 1px;
+        transition-duration: 0.2s;
+        font-family: cursive;
+      }
+      ul li a:hover {
+        color: #fff;
+        background-color: #4aaef5;
+      }
+      .social-icons {
+        height: 87px;
+        width: 100%;
+        padding-top: 24px;
+        text-align: center;
+      }
+      .social-icons a {
+        margin: 0 0.7rem;
+        font-size: 1.5rem;
+        color: #52b1f5;
+        line-height: 24px;
+      }
+      .social-icons a:hover {
+        color: #2b91da;
+      }
+    </style>
+  </head>
+  <body>
+    <i class="fas fa-bars"></i>
+    <aside class="side-nav">
+      <div class="sidenav-header">
+        <i class="fas fa-times"></i>
+        <a href="#" class="logo">
+          <img src="logo.png" alt="Logo" />
+        </a>
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-behance"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-sketch"></i></a>
+      </div>
+    </aside>
+
+    <script>
+      const aside = document.querySelector("aside");
+      const toggleButton = document.querySelector("i.fas.fa-bars");
+      const closeButton = document.querySelector("i.fas.fa-times");
+
+      toggleButton.onclick = () => aside.classList.toggle("open");
+      closeButton.onclick = () => aside.classList.remove("open");
+    </script>
+  </body>
+</html>

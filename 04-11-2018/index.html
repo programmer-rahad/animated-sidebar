@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Animated Sidebar using html css and javascript ( 04-11-2018 )</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      #sidebar {
+        position: fixed;
+        width: 300px;
+        min-height: 100vh;
+        background: #111;
+        transition: 0.5s;
+        transform: translateX(-100%);
+        left: 0;
+        top: 0;
+      }
+      @media (max-width: 575.98px) {
+        #sidebar {
+          width: 270px;
+        }
+      }
+      @media (max-width: 479.98px) {
+        #sidebar {
+          width: 250px;
+        }
+      }
+
+      #sidebar.active {
+        transform: translateX(0);
+      }
+
+      #sidebar ul {
+        padding-top: 35px;
+      }
+      #sidebar ul li {
+        list-style: none;
+        border-bottom: 1px solid rgba(177, 175, 175, 0.5);
+      }
+      #sidebar ul li a {
+        color: #fff;
+        text-decoration: none;
+        padding: 15px 23px;
+        display: block;
+        font-family: cursive;
+        letter-spacing: 2px;
+        font-size: 18px;
+      }
+      #sidebar ul li a:hover {
+        color: #909090;
+      }
+      #sidebar .toggle {
+        position: absolute;
+        left: calc(100% + 30px);
+        top: 20px;
+        cursor: pointer;
+      }
+      @media (max-width: 575.98px) {
+        #sidebar .toggle {
+          left: calc(100% + 25px);
+          top: 15px;
+        }
+      }
+
+      .toggle span {
+        display: block;
+        width: 40px;
+        height: 4px;
+        background: #151719;
+        margin: 9px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sidebar">
+      <div class="toggle" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      function toggleSidebar() {
+        document.querySelector("#sidebar").classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>
